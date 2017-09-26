@@ -8,6 +8,7 @@ var fs = require('fs'),
     sourcemaps = require('gulp-sourcemaps'),
     cleanCSS = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
+    html2js = require('gulp-html2js'),
     ngAnnotate = require('gulp-ng-annotate');
     data = require('./gulp-config.json');
     
@@ -40,7 +41,7 @@ gulp.task('scss', function () {
  * @desc task to watch js files changed
  */
 gulp.task('js', function() {
-    gulp.src('./src/js/app/**/*.js')
+    gulp.src(data.js)
         .pipe(sourcemaps.init())
         .pipe(concat('app.js', {newLine: ';'}))
         .pipe(ngAnnotate({
@@ -54,18 +55,32 @@ gulp.task('js', function() {
  * @desc concat all vendors in a single file
  */
 gulp.task('js:vendor', function() {
-    return gulp.src(data.js)
+    return gulp.src(data.vendors.js)
         .pipe(sourcemaps.init())
         .pipe(concat('vendor.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./src/js/dist'));
 });
-
+/**
+ * @desc min all 
+ */
+gulp.task('jsmin', function() {
+    gulp.src(data.js)
+        .pipe(sourcemaps.init())
+        .pipe(concat('app.js', {newLine: ';'}))
+        .pipe(ngAnnotate({
+            add: true
+        }))
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./build/js/dist'))
+        .pipe(connect.reload());
+});
 /**
  * @desc min concat all vendors in a single file
  */
 gulp.task('jsmin:vendor', function() {
-    return gulp.src(data.js)
+    return gulp.src(data.vendors.js)
         .pipe(debug())
         .pipe(sourcemaps.init())
         .pipe(concat('vendor.js'))
@@ -78,14 +93,20 @@ gulp.task('jsmin:vendor', function() {
  * @desc task to watch html files changed
  */
 gulp.task('html', function() {
-    gulp.src('./src/**/*.html')
+    gulp.src('src/js/app/**/*.html')
+        .pipe(html2js('templates.js', {
+            adapter: 'angular',
+            base: 'src/js/app',
+            name: 'app.templates'
+        }))
+        .pipe(gulp.dest('./src/js/dist/'))
         .pipe(connect.reload());
 });
 /**
  * @desc Watch all changes in development environment
  */
 gulp.task('watch', function() {
-    gulp.watch(['./src/**/*.html'], ['html']);
+    gulp.watch(['./src/**/*.tmpl.html'], ['html']);
     gulp.watch(['./src/js/app/**/*.js'], ['js']);
     gulp.watch('./src/scss/**/*.scss', ['sass']);
 });
@@ -93,5 +114,5 @@ gulp.task('watch', function() {
  * @desc task default
  */
 gulp.task('default',
-['scss', 'js:vendor', 'js', 'server', 'watch']
+['html', 'scss', 'js:vendor', 'js', 'server', 'watch']
 );

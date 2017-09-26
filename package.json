@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/cmtp/angularjs-starter#readme",
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.6",
     "angular": "^1.6.5",
     "angular-ui-router": "^1.0.3",
     "lodash": "^4.17.4"

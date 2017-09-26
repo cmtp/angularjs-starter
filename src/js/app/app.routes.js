@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('app')
-        .config('UIRouteConfig', UIRouteConfig);
+        .config(UIRouteConfig);
 
     UIRouteConfig.$inject = ['$stateProvider', '$urlRouterProvider', 'STATE_CONSTANTS'];
     /** @ngInhject  */

@@ -4,7 +4,7 @@
     angular
         .module('app')
         .component('appHome', {
-            templateUrl:'app-home.tmpl.html',
+            templateUrl:'app-home/app-home.html',
             controller: HomeController,
             controllerAs: 'vm',
             bindings: {
