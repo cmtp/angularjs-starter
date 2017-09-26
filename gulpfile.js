@@ -134,7 +134,8 @@ gulp.task('htmlmin', function() {
 gulp.task('build:html', function () {
     gulp.src('src/index.html')
         .pipe(gulp.dest('build'));
-})
+});
+
 gulp.task('build', 
     ['htmlmin', 'scss:build', 'jsmin:vendor', 'jsmin', 'build:html']
 );
