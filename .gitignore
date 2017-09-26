@@ -1,3 +1,4 @@
 node_modules
 /src/css/*.css
 /src/js/dist/**/*.js
+build

@@ -27,6 +27,20 @@ gulp.task('server', function() {
     });
 });
 /**
+ * @desc Server of development task
+ */
+gulp.task('server:build', function() {
+    connect.server({
+        root: './build',
+        hostname: '0.0.0.0',
+        port: 8085,
+        livereload: false,
+        middleware: function(connect, opt) {
+            return [ historyApiFallback() ];
+        }
+    });
+});
+/**
  * @desc Task of compile and watch sass to css
  */
 gulp.task('scss', function () {
@@ -36,6 +50,12 @@ gulp.task('scss', function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./src/css'))
         .pipe(connect.reload());
+});
+
+gulp.task('scss:build', function () {
+    return gulp.src('./src/scss/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./build/css'));
 });
 /**
  * @desc task to watch js files changed
@@ -66,26 +86,20 @@ gulp.task('js:vendor', function() {
  */
 gulp.task('jsmin', function() {
     gulp.src(data.js)
-        .pipe(sourcemaps.init())
         .pipe(concat('app.js', {newLine: ';'}))
         .pipe(ngAnnotate({
             add: true
         }))
         .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./build/js/dist'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('./build/js/dist'));
 });
 /**
  * @desc min concat all vendors in a single file
  */
 gulp.task('jsmin:vendor', function() {
     return gulp.src(data.vendors.js)
-        .pipe(debug())
-        .pipe(sourcemaps.init())
         .pipe(concat('vendor.js'))
         .pipe(uglify())
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./build/js/dist'));
 });
 
@@ -103,6 +117,29 @@ gulp.task('html', function() {
         .pipe(connect.reload());
 });
 /**
+ * @desc task to build html templates
+ */
+gulp.task('htmlmin', function() {
+    gulp.src('src/js/app/**/*.html')
+        .pipe(html2js('templates.js', {
+            adapter: 'angular',
+            base: 'src/js/app',
+            name: 'app.templates'
+        }))
+        .pipe(gulp.dest('./build/js/dist/'));
+});
+/**
+ * @desc
+ */
+gulp.task('build:html', function () {
+    gulp.src('src/index.html')
+        .pipe(gulp.dest('build'));
+})
+gulp.task('build', 
+    ['htmlmin', 'scss:build', 'jsmin:vendor', 'jsmin', 'build:html']
+);
+
+/**
  * @desc Watch all changes in development environment
  */
 gulp.task('watch', function() {
@@ -113,6 +150,10 @@ gulp.task('watch', function() {
 /**
  * @desc task default
  */
+gulp.task('build:serve', 
+    ['build', 'server:build']
+);
+
 gulp.task('default',
 ['html', 'scss', 'js:vendor', 'js', 'server', 'watch']
 );
