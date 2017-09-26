@@ -6,7 +6,7 @@
         .run(loadBasicConfiguration);
 
     loadBasicConfiguration.$inject = ['$log'];
-    
+    /** @ngInhject  */
     function loadBasicConfiguration($log) {
         $log.log('running from Angularjs');
     }

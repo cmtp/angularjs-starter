@@ -8,6 +8,7 @@ var fs = require('fs'),
     sourcemaps = require('gulp-sourcemaps'),
     cleanCSS = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
+    ngAnnotate = require('gulp-ng-annotate');
     data = require('./gulp-config.json');
     
 /**
@@ -41,7 +42,10 @@ gulp.task('scss', function () {
 gulp.task('js', function() {
     gulp.src('./src/js/app/**/*.js')
         .pipe(sourcemaps.init())
-        .pipe(concat('app.js'))
+        .pipe(concat('app.js', {newLine: ';'}))
+        .pipe(ngAnnotate({
+            add: true
+        }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./src/js/dist'))
         .pipe(connect.reload());
