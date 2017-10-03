@@ -11,9 +11,11 @@
     },
     "js": [
         "src/js/app/app.js",
-        "src/js/app/app.constants.js",
-        "src/js/app/app.routes.js",
         "src/js/app/app.run/js",
+        "src/js/app/core/app.core.js",
+        "src/js/app/core/core.constants.js",
+        "src/js/app/core/core.routes.js",
+        "src/js/app/core/services/lodash.service.js",
         "src/js/app/app-home/app-home.js"
     ]
 }

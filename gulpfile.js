@@ -9,6 +9,7 @@ var fs = require('fs'),
     cleanCSS = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
     html2js = require('gulp-html2js'),
+    jshint = require('gulp-jshint'),
     ngAnnotate = require('gulp-ng-annotate');
     data = require('./gulp-config.json');
     
@@ -57,6 +58,26 @@ gulp.task('scss:build', function () {
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./build/css'));
 });
+/**
+ * @desc 
+ */
+var map = require('map-stream');
+var exitOnJshintError = map(function (file, cb) {
+  if (!file.jshint.success) {
+    console.error('jshint failed');
+    process.exit(1);
+  }
+});
+gulp.task('jshint', function() {
+    gulp.src('src/js/app/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(exitOnJshintError);
+    // return gulp.src('app/**/*.js')
+    //   .pipe(jshint())
+    //   .pipe(jshint.reporter('default'))
+    //   .pipe(jshint.reporter('fail'));
+  });
 /**
  * @desc task to watch js files changed
  */
@@ -144,7 +165,7 @@ gulp.task('build',
  * @desc Watch all changes in development environment
  */
 gulp.task('watch', function() {
-    gulp.watch(['./src/**/*.tmpl.html'], ['html']);
+    gulp.watch(['./src/js/app/**/*.tmpl.html'], ['html']);
     gulp.watch(['./src/js/app/**/*.js'], ['js']);
     gulp.watch('./src/scss/**/*.scss', ['sass']);
 });
@@ -152,7 +173,7 @@ gulp.task('watch', function() {
  * @desc task default
  */
 gulp.task('build:serve', 
-    ['build', 'server:build']
+    ['jshint', 'build', 'server:build']
 );
 
 gulp.task('default',
