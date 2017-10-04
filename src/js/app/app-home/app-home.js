@@ -5,8 +5,8 @@
         .module('app')
         .component('appHome', {
             templateUrl:'app-home/app-home.html',
-            controllerAs: 'HomeController as vm',
-            // controllerAs: 'vm',
+            controller: HomeController,
+            controllerAs: 'vm',
             bindings: {
                 Binding: '=',
             },
@@ -16,8 +16,8 @@
     /** @ngInhject  */
     function HomeController($log, _) {
         var vm = this;
-        vm.count = _.sample([1,2,3,4]);
-
+        vm.hello = "welcome to the angularjs";
+        vm.count = _.head([1,2,3,4]);
         ////////////////
 
         vm.$onInit = function() { };
