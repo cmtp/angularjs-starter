@@ -12,9 +12,9 @@
             },
         });
 
-    HomeController.$inject = ['$log', '_', 'RandomUserService', '$scope'];
+    HomeController.$inject = ['$log', '_', 'RandomUserService'];
     /** @ngInhject  */
-    function HomeController($log, _, RandomUserService, $scope) {
+    function HomeController($log, _, RandomUserService) {
         var vm = this;
         vm.sort = sort;
         ////////////////
@@ -39,8 +39,8 @@
         }
 
         function sort(keyname){
-            $scope.sortKey = keyname;   //set the sortKey to the param passed
-            $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+            vm.sortKey = keyname;   //set the sortKey to the param passed
+            vm.reverse = !$scope.reverse; //if true make it false and vice versa
         }
     }
 })();

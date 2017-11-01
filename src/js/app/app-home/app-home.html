@@ -1,11 +1,11 @@
 <div>
     <table>
         <thead>
-            <th ng-click="sort('name.first')">Name</th>
-            <th ng-click="sort('name.last')">LastName</th>
-            <th ng-click="sort('gender')">gender</th>
-            <th ng-click="sort('location.street')">location</th>
-            <th ng-click="sort('email')">email</th>    
+            <th ng-click="vm.sort('name.first')">Name</th>
+            <th ng-click="vm.sort('name.last')">LastName</th>
+            <th ng-click="vm.sort('gender')">gender</th>
+            <th ng-click="vm.sort('location.street')">location</th>
+            <th ng-click="vm.sort('email')">email</th>    
         </thead>
         <tbody>
             <tr ng-repeat="user in vm.users|orderBy:sortKey:reverse">
