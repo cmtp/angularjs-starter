@@ -8,7 +8,7 @@
     loadBasicConfiguration.$inject = ['$log', '$templateCache', '$compile', '$rootScope'];
     /** @ngInhject  */
     function loadBasicConfiguration($log, $templateCache, $compile, $rootScope) {
-        var templatesHTML = $templateCache.get('app.templates');
-        $compile(templatesHTML)($rootScope); 
+        // var templatesHTML = $templateCache.get('app.templates');
+        // $compile(templatesHTML)($rootScope); 
     }
 })();

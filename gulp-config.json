@@ -16,6 +16,8 @@
         "src/js/app/core/core.constants.js",
         "src/js/app/core/core.routes.js",
         "src/js/app/core/services/lodash.service.js",
-        "src/js/app/app-home/app-home.js"
+        "src/js/app/app-home/app-home.js",
+        "src/js/app/app-home/app-home.constants.js",
+        "src/js/app/app-home/app-home.service.js"
     ]
 }
