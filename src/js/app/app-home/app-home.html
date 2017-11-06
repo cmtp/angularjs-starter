@@ -8,7 +8,7 @@
             <th ng-click="vm.sort('email')">email</th>    
         </thead>
         <tbody>
-            <tr ng-repeat="user in vm.users|orderBy:sortKey:reverse">
+            <tr ng-repeat="user in vm.users|orderBy:vm.sortKey:vm.reverse">
                 <td>{{user.name.first}}</td>
                 <td>{{user.name.last}}</td>
                 <td>{{user.gender}}</td>

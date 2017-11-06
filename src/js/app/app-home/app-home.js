@@ -40,7 +40,7 @@
 
         function sort(keyname){
             vm.sortKey = keyname;   //set the sortKey to the param passed
-            vm.reverse = !$scope.reverse; //if true make it false and vice versa
+            vm.reverse = !vm.reverse; //if true make it false and vice versa
         }
     }
 })();
