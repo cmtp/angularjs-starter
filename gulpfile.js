@@ -167,7 +167,7 @@ gulp.task('build',
 gulp.task('watch', function() {
     gulp.watch(['./src/js/app/**/*.tmpl.html'], ['html']);
     gulp.watch(['./src/js/app/**/*.js'], ['js']);
-    gulp.watch('./src/scss/**/*.scss', ['sass']);
+    gulp.watch('./src/scss/**/*.scss', ['scss']);
 });
 /**
  * @desc task default

@@ -16,6 +16,15 @@
     /** @ngInhject  */
     function HomeController($log, _, RandomUserService) {
         var vm = this;
+        vm.resizeMode = 'OverflowResizer';
+        vm.filterObject = {
+            open: true,
+            columns: {
+                name: true,
+                last: true,
+
+            }
+        };
         vm.sort = sort;
         ////////////////
 

@@ -2,8 +2,11 @@
     "vendors": {
         "js": [
             "node_modules/lodash/lodash.js",
+            "node_modules/jquery/dist/jquery.min.js",
             "node_modules/angular/angular.js",
-            "node_modules/@uirouter/angularjs/release/angular-ui-router.js"
+            "node_modules/@uirouter/angularjs/release/angular-ui-router.js",
+            "node_modules/angular-utils-pagination/dirPagination.js",
+            "node_modules/angular-table-resize/dist/angular-table-resize.min.js"
         ],
         "css": [
             ""
