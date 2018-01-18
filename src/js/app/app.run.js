@@ -6,8 +6,9 @@
         .run(loadBasicConfiguration);
 
     loadBasicConfiguration.$inject = ['$log', '$templateCache', '$compile', '$rootScope'];
-    /** @ngInhject  */
+    /** @ngInject  */
     function loadBasicConfiguration($log, $templateCache, $compile, $rootScope) {
+        // TODO: finding support for update template cache in development.
         // var templatesHTML = $templateCache.get('app.templates');
         // $compile(templatesHTML)($rootScope); 
     }
