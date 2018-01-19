@@ -2,15 +2,15 @@ var fs = require('fs'),
     gulp = require('gulp'),
     debug = require('gulp-debug'),
     connect = require('gulp-connect'),
-    historyApiFallback = require("connect-history-api-fallback"),
-    sass = require("gulp-sass"),
+    historyApiFallback = require('connect-history-api-fallback'),
+    sass = require('gulp-sass'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     cleanCSS = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
     html2js = require('gulp-html2js'),
     jshint = require('gulp-jshint'),
-    ngAnnotate = require('gulp-ng-annotate');
+    ngAnnotate = require('gulp-ng-annotate'),
     data = require('./gulp-config.json');
     
 /**

@@ -8,6 +8,7 @@
     _.$inject = ['$window'];
     function _($window) {
         if(!$window._){
+            return;
             // TODO: redirect to an error
         }        
         return $window._;

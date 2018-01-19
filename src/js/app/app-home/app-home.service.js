@@ -16,7 +16,7 @@
         ////////////////
         function getUsers() {
             return $q(function (resolve, reject) {
-                $http.get(URL.RANDOM_USER + '?results=5000')
+                $http.get(URL.RANDOM_USER + '?results=100')
                     .then(function (response) {
                         resolve(response);
                     })
