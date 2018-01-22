@@ -18,17 +18,30 @@
             "node_modules/angular-mocks/angular-mocks.js",
             "node_modules/@uirouter/angularjs/release/angular-ui-router.js",
             "node_modules/angular-utils-pagination/dirPagination.js",
-            "node_modules/angular-table-resize/dist/angular-table-resize.min.js"
+            "node_modules/angular-table-resize/dist/angular-table-resize.min.js",
+            "src/js/app/app.js",
+            "src/js/dist/templates.js",
+            "src/js/app/app.run.js",
+            "src/js/app/core/app.core.js",
+            "src/js/app/core/core.constants.js",
+            "src/js/app/core/core.routes.js",
+            "src/js/app/shared/shared.js",
+            "src/js/app/core/services/lodash.service.js",
+            "src/js/app/shared/filters/strReplace.filter.js",
+            "src/js/app/app-home/app-home.js",
+            "src/js/app/app-home/app-home.constants.js",
+            "src/js/app/app-home/app-home.service.js"
         ]
     },
     "js": [
         "src/js/app/app.js",
-        "src/js/dist/templates.js",
         "src/js/app/app.run.js",
         "src/js/app/core/app.core.js",
         "src/js/app/core/core.constants.js",
         "src/js/app/core/core.routes.js",
+        "src/js/app/shared/shared.js",
         "src/js/app/core/services/lodash.service.js",
+        "src/js/app/shared/filters/strReplace.filter.js",
         "src/js/app/app-home/app-home.js",
         "src/js/app/app-home/app-home.constants.js",
         "src/js/app/app-home/app-home.service.js"

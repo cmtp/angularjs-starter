@@ -11,6 +11,7 @@ var fs = require('fs'),
     html2js = require('gulp-html2js'),
     jshint = require('gulp-jshint'),
     ngAnnotate = require('gulp-ng-annotate'),
+    map = require('map-stream'),
     data = require('./gulp-config.json');
     
 /**
@@ -61,7 +62,6 @@ gulp.task('scss:build', function () {
 /**
  * @desc 
  */
-var map = require('map-stream');
 var exitOnJshintError = map(function (file, cb) {
   if (!file.jshint.success) {
     console.error('jshint failed');
