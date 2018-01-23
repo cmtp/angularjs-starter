@@ -24,4 +24,11 @@ describe('appHome component', function () {
         expect(HomeController.resizeMode).toBeDefined();
         expect(HomeController.resizeMode).toBe('OverflowResizer');
     });
+
+    it('appHome test method sort', function () {
+        HomeController.sort('name.last');
+        expect(HomeController.sortKey).toBeDefined();
+        expect(HomeController.sortKey).toBe('name.last');
+        expect(HomeController.reverse).toBeTruthy();
+    });
 });

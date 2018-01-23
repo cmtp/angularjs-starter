@@ -7,10 +7,11 @@
 	function screenName() {
 		return function (input) {
 			input = input || '';
-			if (input === '')
+			if (input === '') {
 				return '';
+			}
 			var item = JSON.parse(input);
 			return item.Name;
-		}
+		};
 	}
 })();
