@@ -1,4 +1,25 @@
 <div>
-    {{ vm.hello }}
+    <table resizeable mode="vm.resizeMode" id="myTable" class="">
+        <thead>
+            <th id="first" ><span ng-click="vm.sort('name.first')">Name</span></th>
+            <th id="last"><span  ng-click="vm.sort('name.last')">LastName</span></th>
+            <th id="gender"><span  ng-click="vm.sort('gender')">gender</span></th>
+            <th id="street" ><span ng-click="vm.sort('location.street')">location</span></th>
+            <th id="email" ><span ng-click="vm.sort('email')">email</span></th>    
+        </thead>
+        <tbody>
+            <tr dir-paginate="user in vm.users |orderBy:vm.sortKey:vm.reverse |itemsPerPage:300">
+                <td>{{user.name.first}}</td>
+                <td>{{user.name.last}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.location.street}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls
+        max-size="5"
+        direction-links="true"
+        boundary-links="true" >
+    </dir-pagination-controls>
 </div>
-<div> {{ vm.count }}</div>

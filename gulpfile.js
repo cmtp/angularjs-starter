@@ -2,15 +2,16 @@ var fs = require('fs'),
     gulp = require('gulp'),
     debug = require('gulp-debug'),
     connect = require('gulp-connect'),
-    historyApiFallback = require("connect-history-api-fallback"),
-    sass = require("gulp-sass"),
+    historyApiFallback = require('connect-history-api-fallback'),
+    sass = require('gulp-sass'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     cleanCSS = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
     html2js = require('gulp-html2js'),
     jshint = require('gulp-jshint'),
-    ngAnnotate = require('gulp-ng-annotate');
+    ngAnnotate = require('gulp-ng-annotate'),
+    map = require('map-stream'),
     data = require('./gulp-config.json');
     
 /**
@@ -61,7 +62,6 @@ gulp.task('scss:build', function () {
 /**
  * @desc 
  */
-var map = require('map-stream');
 var exitOnJshintError = map(function (file, cb) {
   if (!file.jshint.success) {
     console.error('jshint failed');
@@ -167,7 +167,7 @@ gulp.task('build',
 gulp.task('watch', function() {
     gulp.watch(['./src/js/app/**/*.tmpl.html'], ['html']);
     gulp.watch(['./src/js/app/**/*.js'], ['js']);
-    gulp.watch('./src/scss/**/*.scss', ['sass']);
+    gulp.watch('./src/scss/**/*.scss', ['scss']);
 });
 /**
  * @desc task default

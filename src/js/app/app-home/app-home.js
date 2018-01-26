@@ -12,16 +12,44 @@
             },
         });
 
-    HomeController.$inject = ['$log', '_'];
+    HomeController.$inject = ['$log', '_', 'RandomUserService'];
     /** @ngInhject  */
-    function HomeController($log, _) {
+    function HomeController($log, _, RandomUserService) {
         var vm = this;
-        vm.hello = "welcome to the angularjs";
-        vm.count = _.head([1,2,3,4]);
+        vm.resizeMode = 'OverflowResizer';
+        vm.filterObject = {
+            open: true,
+            columns: {
+                name: true,
+                last: true,
+
+            }
+        };
+        vm.sort = sort;
         ////////////////
+
+        activate();
 
         vm.$onInit = function() { };
         vm.$onChanges = function(changesObj) { };
         vm.$onDestroy = function() { };
+
+        function activate() {
+            RandomUserService.getUsers()
+                .then(function (res) {
+                    vm.users = res.data.results;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    console.log('finish this request');
+                });
+        }
+
+        function sort(keyname){
+            vm.sortKey = keyname;   //set the sortKey to the param passed
+            vm.reverse = !vm.reverse; //if true make it false and vice versa
+        }
     }
 })();

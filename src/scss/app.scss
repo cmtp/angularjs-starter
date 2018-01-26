@@ -1,0 +1,14 @@
+// table.resize tr th .handle {
+//     width: 10px;
+//     height: 100%;
+//     position: absolute;
+//     top: 0;
+//     right: 0px;
+//     cursor: e-resize;
+// }
+// table.resize th {
+//     position: relative;
+// }
+table {
+    table-layout: fixed;
+}
